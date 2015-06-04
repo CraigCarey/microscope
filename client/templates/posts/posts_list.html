@@ -1,0 +1,12 @@
+<!-- the name that will be used by Meteor to keep track of what template goes where
+    (the name of the actual file is irrelevant -->
+<template name="postsList">
+    <div class="posts">
+        <!-- Spacebars block helper, iterates through each post in posts -->
+        <!-- posts is a template helper, think of it as a placeholder for a dynamic value-->
+        {{#each posts}}
+        <!-- insert the postItem template -->
+            {{> postItem}}
+        {{/each}}
+    </div>
+</template>
