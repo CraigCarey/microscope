@@ -2,6 +2,8 @@
     <div class="post">
         <div class="post-content">
             <!-- url and title are document properties, domain calls a template helper -->
+            <!-- Meteor know that we mean this.title and this.url -->
+            <!-- each post is assigned to 'this' in the {{#each}} block helper -->
             <h3><a href="{{url}}">{{title}}</a><span>{{domain}}</span></h3>
         </div>
     </div>
