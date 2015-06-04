@@ -6,6 +6,13 @@
             <!-- each post is assigned to 'this' in the {{#each}} block helper -->
             <h3><a href="{{url}}">{{title}}</a><span>{{domain}}</span></h3>
         </div>
+        <!-- We're telling the router to use the postPage route, and it knows that this route requires an
+        _id of some kind (that's how we defined our path). So the router will look for this _id in the most
+        logical place available: the data context of the {{pathFor 'postPage'}} helper; in other words this.
+        And it so happens that our 'this' corresponds to a post, which does possess an _id property.
+        Alternatively, you can also explicitly tell the router where you'd like it to look for the _id property,
+        by passing a second argument to the helper (i.e. {{pathFor 'postPage' someOtherPost}}). A practical use of
+        this pattern would be getting the link to the previous or next posts in a list, for example-->
         <a href="{{pathFor 'postPage'}}" class="discuss btn btn-default">Discuss</a>
     </div>
 </template>
