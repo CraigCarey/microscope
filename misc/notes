@@ -12,7 +12,7 @@ Structure
 
     Code in the /server directory only runs on the server.
     Code in the /client directory only runs on the client.
-    Everything else runs on both the client and server.
+    Everything else runs in both contexts
     Your static assets (fonts, images, etc.) go in the /public directory.
 
     Files in /lib are loaded before anything else.
@@ -29,3 +29,36 @@ Spacebars
     Expressions such as {{title}} either call a property of the current object, or the return value of a template helper as defined in the current template's manager (more on this later).
 
     Finally, block helpers are special tags that control the flow of the template, such as {{#each}}…{{/each}} or {{#if}}…{{/if}}.
+
+Collections
+    A collection is a special data structure that takes care of storing your data in the permanent, server-side MongoDB database, and then synchronising it with each connected user's browser in real-time.
+    Collections are pretty central to any app, so to make sure they are always defined first we'll put them inside the lib directory.
+
+    Code inside folders that are not client/ or server/ will run in both contexts. So collections in the lib folder are available to both client and server. However, what the collection does in each environment can be pretty different.
+
+    On the server, the collection has the job of talking to the MongoDB database, and reading and writing any changes. In this sense, it can be compared to a standard database library.
+
+    On the client however, the collection is a copy of a subset of the real, canonical collection. The client-side collection is constantly and (mostly) transparently kept up to date with that subset in real-time.
+
+Var
+    In Meteor, the var keyword limits the scope of an object to the current file. When we want to make a collection available to our whole app omit the var keyword.
+
+Data storage
+    Web apps have three basic ways of storing data at their disposal, each filling a different role:
+
+    browser memory: things like JavaScript variables are stored in the browser's memory, which means they're not permanent: they're local to the current browser tab, and will disappear as soon as you close it.
+    browser storage: browsers can also store data more permanently using cookies or Local Storage. Although this data will persist from session to session, it's local to the current user (but available across tabs) and can't be easily shared with other users.
+    server-side database: the best place for permanent data that you also want to make available to more than one user is in a good old database (MongoDB being the default solution for Meteor apps).
+
+    the database should remain the “canonical“ data source that contains the master copy of your data.
+
+meteor reset
+    erases your database and resets your project. The reset command completely clears out the Mongo database
+
+Find & Fetch
+
+    Posts.find();       Posts.findOne();        Posts.find().fetch();
+
+    In Meteor, find() returns a cursor, which is a reactive data source. When we want to log its contents, we can then use fetch() on that cursor to transform it into an array .
+
+    Within an app, Meteor is smart enough to know how to iterate over cursors without having to explicitly convert them into arrays first. This is why you won't see fetch() that often in actual Meteor code
