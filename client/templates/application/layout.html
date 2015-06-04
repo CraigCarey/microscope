@@ -1,16 +1,7 @@
 <!-- app's outer layout -->
 <template name="layout">
     <div class="container">
-
-        <!-- bootstrap navbar -->
-        <header class="navbar navbar-default" role="navigation">
-            <div class="navbar-header">
-                <!-- pathFor is an iron:router Spacebars helper -->
-                <a class="navbar-brand" href="{{pathFor 'postsList'}}">Microscope</a>
-            </div>
-        </header>
-
-        <!-- main content -->
+        {{> header}}
         <div id="main">
             <!-- {{> templateInclusionTag}}: inserts template -->
             <!-- yield gets a template from iron :router -->

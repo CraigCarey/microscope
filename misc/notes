@@ -62,3 +62,9 @@ Find & Fetch
     In Meteor, find() returns a cursor, which is a reactive data source. When we want to log its contents, we can then use fetch() on that cursor to transform it into an array .
 
     Within an app, Meteor is smart enough to know how to iterate over cursors without having to explicitly convert them into arrays first. This is why you won't see fetch() that often in actual Meteor code
+
+The Session
+    A global reactive data store. It's global in the sense of a global singleton object: there's one session, and it's accessible everywhere. Global variables are usually seen as a bad thing, but in this case the session can be used as a central communication bus for different parts of the application.
+    The Session object is not shared between users, or even between browser tabs.
+    Session.set('pageTitle', 'A different title');
+    Session.get('pageTitle');
