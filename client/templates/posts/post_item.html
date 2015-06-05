@@ -5,6 +5,10 @@
             <!-- Meteor know that we mean this.title and this.url -->
             <!-- each post is assigned to 'this' in the {{#each}} block helper -->
             <h3><a href="{{url}}">{{title}}</a><span>{{domain}}</span></h3>
+            <p>
+                submitted by {{author}}
+                {{#if ownPost}}<a href="{{pathFor 'postEdit'}}">Edit</a>{{/if}}
+            </p>
         </div>
         <!-- We're telling the router to use the postPage route, and it knows that this route requires an
         _id of some kind (that's how we defined our path). So the router will look for this _id in the most

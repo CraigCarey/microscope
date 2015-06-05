@@ -1,6 +1,11 @@
 // postItem template's helpers
 Template.postItem.helpers({
 
+    // check if post belongs to current user
+    ownPost: function() {
+        return this.userId === Meteor.userId();
+    },
+
     // domain's value is an anonymous function
     domain: function() {
         // create an empty anchor element
