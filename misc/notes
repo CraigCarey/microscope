@@ -1,3 +1,6 @@
+Deploying
+    meteor deploy sgccarey-microscope.meteor.com
+
 Packages
 
     Meteor uses five basic types of packages:
