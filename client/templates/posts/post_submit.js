@@ -21,12 +21,13 @@ Template.postSubmit.events({
 
             // display the error to the user and abort
             if (error) {
-                return alert(error.reason);
+                //return alert(error.reason); // ugly method
+                return throwError(error.reason);
             }
 
             // show that post exists and route to existing post
             if (result.postExists) {
-                alert('This link has already been posted');
+                throwError('This link has already been submitted');
             }
 
             // redirect browser to new post page if postInsert is successful
