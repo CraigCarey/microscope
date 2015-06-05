@@ -1,3 +1,24 @@
+// use the Session to store an object containing potential error messages
+// this will change as the user interacts with the form, which will in turn reactively update the form markup & contents
+// initialise the object when form is created to clear old error messages
+Template.postSubmit.onCreated(function() {
+    Session.set('postSubmitErrors', {});
+});
+
+// two template helpers that look at the field property of the above object
+Template.postSubmit.helpers({
+
+    // just returns the message itself
+    errorMessage: function(field) {
+        return Session.get('postSubmitErrors')[field];
+    },
+
+    // checks for the presence of a message and returns has-error if such a message exists
+    errorClass: function (field) {
+        return !!Session.get('postSubmitErrors')[field] ? 'has-error' : '';
+    }
+});
+
 
 Template.postSubmit.events({
 
@@ -14,6 +35,14 @@ Template.postSubmit.events({
             url: $(e.target).find('[name=url]').val(),
             title: $(e.target).find('[name=title]').val()
         };
+
+        // check post for errors
+        var errors = validatePost(post);
+        if (errors.title || errors.url) {
+            // using return to abort the execution of the helper if any errors are present,
+            // not because we want to actually return this value anywhere
+            return Session.set('postSubmitErrors', errors);
+        }
 
         // insert post into db by calling a method on the server
         // Method name, args, callback (executes when Method is done)
