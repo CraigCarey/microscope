@@ -13,8 +13,5 @@ Template.postItem.helpers({
         // get the current post's url (this is the object currently being acted upon)
         a.href = this.url;
         return a.hostname;
-    },
-    commentsCount: function() {
-        return Comments.find({postId: this._id}).count();
     }
 });
