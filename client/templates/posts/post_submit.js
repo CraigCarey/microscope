@@ -30,7 +30,10 @@ Template.postSubmit.events({
             }
 
             // redirect browser to new post page if postInsert is successful
-            Router.go('postPage', {_id: result._id});
+            //Router.go('postPage', {_id: result._id});
         });
+
+        // test code for demonstrating latency compensation
+        Router.go('postsList');
     }
 });
