@@ -1,9 +1,11 @@
 <!-- app's outer layout -->
 <template name="layout">
     <div class="container">
+        <!-- {{> templateInclusionTag}}: inserts template -->
         {{> header}}
+        {{> errors}}
+
         <div id="main">
-            <!-- {{> templateInclusionTag}}: inserts template -->
             <!-- yield gets a template from iron :router -->
             {{> yield}}
         </div>

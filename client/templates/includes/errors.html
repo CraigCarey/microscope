@@ -1,0 +1,16 @@
+<!-- two templates in one file - since they're short and closely related -->
+
+<template name="errors">
+    <div class="errors">
+        {{#each errors}}
+            {{> error}}
+        {{/each}}
+    </div>
+</template>
+
+<template name="error">
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{message}}
+    </div>
+</template>
