@@ -15,10 +15,22 @@ Template.postSubmit.events({
             title: $(e.target).find('[name=title]').val()
         };
 
-        // insert post into db and obtain generated id from return value
-        post._id = Posts.insert(post);
+        // insert post into db by calling a method on the server
+        // Method name, args, callback (executes when Method is done)
+        Meteor.call('postInsert', post, function(error, result) {
 
-        // redirect browser after all else is done
-        Router.go('postPage', post);
+            // display the error to the user and abort
+            if (error) {
+                return alert(error.reason);
+            }
+
+            // show that post exists and route to existing post
+            if (result.postExists) {
+                alert('This link has already been posted');
+            }
+
+            // redirect browser to new post page if postInsert is successful
+            Router.go('postPage', {_id: result._id});
+        });
     }
 });

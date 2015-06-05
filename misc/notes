@@ -89,3 +89,12 @@ Computations
     Note that we need to wrap the Tracker block inside a Meteor.startup() block to ensure that it only runs once Meteor has finished loading the Posts collection.
     Behind the scenes, autorun then creates a computation, and wires it up to re-evaluate whenever the data sources it depends on change.
     Since Posts.find() is a reactive data source, it will take care of telling the computation to re-evaluate every time the number of posts changes.
+
+Methods
+    Method.
+
+    A Meteor Method is a server-side function that is called client-side.
+    Behind the scenes, the Collection's insert, update and remove functions are all Methods.
+    The Meteor.call function calls a Method named by its first argument. You can provide arguments to the call, and finally attach a callback, which will execute when the server-side Method is done.
+
+    Meteor method callbacks always have two arguments, error and result. If for whatever reason the error argument exists, alert the user (and use return to abort the callback).
