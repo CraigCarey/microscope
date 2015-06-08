@@ -1,8 +1,17 @@
 // once autopublish is removed, you need to manually publish data
 // This then needs to be subscribed to in the client
 
-Meteor.publish('posts', function() {
-    return Posts.find();
+Meteor.publish('posts', function(options) {
+
+    // validate options
+    check(options, {
+        // accept any object, in our case: {limit: postsLimit}
+        sort: Object,
+        limit: Number
+    });
+
+    // apply options to all ({}) Posts
+    return Posts.find({}, options);
 });
 
 Meteor.publish('comments', function(postId) {
