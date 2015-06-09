@@ -13,12 +13,22 @@ Template.postItem.helpers({
         // get the current post's url (this is the object currently being acted upon)
         a.href = this.url;
         return a.hostname;
+    },
+
+    // helper function for disabling the upvote button
+    upvotedClass: function() {
+        var userId = Meteor.userId();
+        if (userId && !_.include(this.upvoters, userId)) {
+            return 'btn-primary upvotable';
+        } else {
+            return 'disabled';
+        }
     }
 });
 
 // call a server method when the user clicks on the upvote button
 Template.postItem.events({
-    'click .upvote': function(e) {
+    'click .upvotable': function(e) {
         e.preventDefault();
         Meteor.call('upvote', this._id);
     }

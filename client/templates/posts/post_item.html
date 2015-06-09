@@ -1,6 +1,6 @@
 <template name="postItem">
     <div class="post">
-        <a href="#" class="upvote btn btn-default">⬆</a>
+        <a href="#" class="upvote btn btn-default {{upvotedClass}}">⬆</a>
         <div class="post-content">
             <!-- url and title are document properties, domain calls a template helper -->
             <!-- Meteor know that we mean this.title and this.url -->
