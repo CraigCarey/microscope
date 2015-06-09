@@ -15,3 +15,11 @@ Template.postItem.helpers({
         return a.hostname;
     }
 });
+
+// call a server method when the user clicks on the button
+Template.postItem.events({
+    'click .upvote': function(e) {
+        e.preventDefault();
+        Meteor.call('upvote', this._id);
+    }
+});

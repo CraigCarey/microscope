@@ -1,11 +1,13 @@
 <template name="postItem">
     <div class="post">
+        <a href="#" class="upvote btn btn-default">⬆</a>
         <div class="post-content">
             <!-- url and title are document properties, domain calls a template helper -->
             <!-- Meteor know that we mean this.title and this.url -->
             <!-- each post is assigned to 'this' in the {{#each}} block helper -->
             <h3><a href="{{url}}">{{title}}</a><span>{{domain}}</span></h3>
             <p>
+                {{votes}} Votes,
                 submitted by {{author}},
                 <a href="{{pathFor 'postPage'}}">{{commentsCount}} comments</a>
                 {{#if ownPost}}<a href="{{pathFor 'postEdit'}}">Edit</a>{{/if}}
