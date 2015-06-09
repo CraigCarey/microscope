@@ -16,7 +16,7 @@ Template.postItem.helpers({
     }
 });
 
-// call a server method when the user clicks on the button
+// call a server method when the user clicks on the upvote button
 Template.postItem.events({
     'click .upvote': function(e) {
         e.preventDefault();
