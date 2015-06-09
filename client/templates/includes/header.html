@@ -12,7 +12,7 @@
             </button>
 
             <!-- pathFor is an iron:router Spacebars helper -->
-            <a class="navbar-brand" href="{{pathFor 'postsList'}}">Microscope</a>
+            <a class="navbar-brand" href="{{pathFor 'home'}}">Microscope</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navigation">
@@ -21,6 +21,12 @@
                 <!-- currentUser helper is provided to us by the accounts package and is the Spacebars equivalent of
                     Meteor.user(). Since it's reactive, the link will appear or disappear as you log in and out of
                     the app -->
+                <li>
+                    <a href="{{pathFor 'newPosts'}}">New</a>
+                </li>
+                <li>
+                    <a href="{{pathFor 'bestPosts'}}">Best</a>
+                </li>
                 {{#if currentUser}}
                     <li>
                         <a href="{{pathFor 'postSubmit'}}">Submit Post</a>
